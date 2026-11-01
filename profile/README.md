@@ -1,4 +1,4 @@
-# Septem Labs
+# Cashlet Labs
 
 Building open-source infrastructure for Bitcoin Cash identity and payments.
 
