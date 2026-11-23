@@ -1,22 +1,50 @@
 # Cashlet Labs
 
-Building open-source infrastructure for Bitcoin Cash identity and payments.
+Open-source tools for Bitcoin Cash identity and payments, built by [Septem Labs](https://septemlabs.com).
 
-## What we're working on
+We work on one idea: a person should be able to prove that their Bitcoin Cash wallet and their Nostr identity belong together, without an account, a company or a fee. Then anyone can pay that person by `npub` and be sure the address is theirs.
 
-**cashlet-did** — a TypeScript library for decentralised identity on BCH. Binds Bitcoin Cash addresses to Nostr public keys, enabling pay-by-handle, verifiable credentials, key rotation, and selective disclosure. Works in browsers, Node.js, and browser extensions.
+## BND: Bitcoin Cash and Nostr identity binding
 
-**Cashlet** — a self-custodial Bitcoin Cash wallet Chrome extension with Nostr identity, NIP-07 signing, WizardConnect, CashConnect, and CashTokens support.
+[**bnd**](https://github.com/cashlet-labs/bnd) is an open protocol. A BCH key and a Nostr key each sign a statement naming the other, and the result is published as an ordinary Nostr event. Any app can find it on relays and verify it offline.
 
-## Philosophy
+On top of the binding, BND-1 defines login with both keys, key rotation and recovery with two of three keys, `did:bnd` (a DID that survives rotation), and paying an identity at its current, verified address.
 
-- Open protocols over closed platforms
-- Self-sovereign identity — no servers, no central authority
-- Reusable libraries first — build once, integrate anywhere
-- BCH as the payment layer for the open web
+- Specification and test vectors: [BND-1](https://github.com/cashlet-labs/bnd/blob/main/spec/BND-1.md), [did:bnd](https://github.com/cashlet-labs/bnd/blob/main/spec/did-bnd.md)
+- Library: [`@cashlet-labs/bnd`](https://www.npmjs.com/package/@cashlet-labs/bnd) on npm
+- Site: [bnd.septemlabs.com](https://bnd.septemlabs.com), with the live demo at [bnd.septemlabs.com/demo](https://bnd.septemlabs.com/demo)
+- Status: the specification is a draft and may change before version 1.
+
+## Cashlet: a wallet with BND built in
+
+[**cashlet-wallet**](https://github.com/cashlet-labs/cashlet-wallet) is a self-custodial Bitcoin Cash wallet for Chrome. It sends and receives BCH and CashTokens, publishes your BND identity, pays any `npub` or `did:bnd`, signs for Nostr sites (NIP-07, NIP-04, NIP-44) and connects to dapps over WizardConnect. There is no Cashlet server or account.
+
+Site and install: [extension.septemlabs.com](https://extension.septemlabs.com)
+
+## Principles
+
+- Open protocols over closed platforms.
+- No identity provider: relays store events, apps check the signatures themselves.
+- Reusable libraries first, so wallets and Nostr clients can adopt the protocol without asking permission.
 
 ## Get involved
 
-We welcome contributions across all projects — protocol design, implementations, examples, and documentation.
+Open an issue or a pull request on [bnd](https://github.com/cashlet-labs/bnd). Wallet and Nostr client builders: the [integration guide](https://github.com/cashlet-labs/bnd/blob/main/docs/integration.md) is the place to start. Contact: hello@septemlabs.com
 
-Open an issue or reach out on Nostr.
+Code is MIT. Specification text is CC BY 4.0.
+
+## Support our work
+
+Both projects are free and open. Donations in BCH or CashTokens keep the relays, the DID resolver, the demo and development going.
+
+**BND**
+
+![Support BND](https://raw.githubusercontent.com/cashlet-labs/bnd/main/docs/assets/support-bnd.png)
+
+`bitcoincash:zplfhfkwgpc4ud8k99x97wz689tn0xm5psj0wx2tkt`
+
+**Cashlet**
+
+![Support Cashlet](https://raw.githubusercontent.com/cashlet-labs/cashlet-wallet/main/docs/support-cashlet.png)
+
+`bitcoincash:zpwd6edurja89cdq7hppvzq6xxzj5ct58uqf9czcx9`
